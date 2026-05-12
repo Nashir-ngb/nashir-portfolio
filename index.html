@@ -745,6 +745,17 @@
       margin: 0 auto;
     }
 
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ── TABLET (≤ 768px) ── */
     @media (max-width: 768px) {
       .nav-links {
@@ -1308,6 +1319,45 @@
         closeNav();
       }
     });
+
+    // ── Scroll-reveal ──
+    const revealSelectors = [
+      '.hero > div',
+      '.hero-avatar',
+      '.section-label',
+      '.section-title',
+      '.stat-card',
+      '.about-card',
+      '.exp-item',
+      '.feature-card',
+      '.research-card',
+      '.skill-group',
+      '.photo-slot',
+      '.contact-item',
+    ];
+
+    const revealEls = document.querySelectorAll(revealSelectors.join(','));
+
+    // Add stagger delay for sibling elements inside the same parent
+    const parentSeen = new Map();
+    revealEls.forEach(el => {
+      el.classList.add('reveal');
+      const parent = el.parentElement;
+      const count = parentSeen.get(parent) || 0;
+      if (count > 0) el.style.transitionDelay = `${count * 0.1}s`;
+      parentSeen.set(parent, count + 1);
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
   </script>
 </body>
 
