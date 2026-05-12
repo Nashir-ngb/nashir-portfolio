@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nashir Ngoobi – Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green-50: #EAF3DE;
+      --green-100: #C0DD97;
+      --green-200: #97C459;
+      --green-600: #3B6D11;
+      --green-800: #27500A;
+      --green-900: #173404;
+      --teal-50: #E1F5EE;
+      --teal-100: #9FE1CB;
+      --teal-400: #1D9E75;
+      --teal-600: #0F6E56;
+      --teal-800: #085041;
+      --amber-50: #FAEEDA;
+      --amber-100: #FAC775;
+      --amber-400: #BA7517;
+      --amber-800: #633806;
+      --gray-50: #F1EFE8;
+      --gray-100: #D3D1C7;
+      --gray-400: #888780;
+      --gray-600: #5F5E5A;
+      --gray-800: #444441;
+      --gray-900: #2C2C2A;
+      --bg: #FAFAF8;
+      --card: #FFFFFF;
+      --text: #1a1a18;
+      --muted: #5F5E5A;
+      --border: rgba(0, 0, 0, 0.08);
+      --accent: #1D9E75;
+      --accent-light: #E1F5EE;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(250, 250, 248, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: none;
+      z-index: 201;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* HAMBURGER BUTTON */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 201;
+      position: relative;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* MOBILE NAV DRAWER */
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 56px;
+      background: rgba(250, 250, 248, 0.98);
+      backdrop-filter: blur(16px);
+      z-index: 199;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      gap: 0;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .nav-mobile-overlay.open {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+      animation: navSlideIn 0.25s ease forwards;
+    }
+
+    @keyframes navSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav-mobile-overlay a {
+      display: block;
+      padding: 1rem 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .nav-mobile-overlay a:hover {
+      color: var(--accent);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 2rem 4rem;
+      max-width: 780px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-light);
+      color: var(--teal-600);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .hero-cta:hover {
+      opacity: 0.88;
+    }
+
+    .hero-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-100), var(--teal-100));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--teal-600);
+      border: 3px solid var(--card);
+      box-shadow: 0 0 0 1px var(--border);
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    /* SECTION WRAPPER */
+    section {
+      padding: 3.5rem 2rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* STATS ROW */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .about-card h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .about-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .exp-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .exp-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .exp-line {
+      flex: 1;
+      width: 1px;
+      background: var(--border);
+      margin-top: 4px;
+    }
+
+    .exp-body {
+      padding-bottom: 0.5rem;
+      flex: 1;
+    }
+
+    .exp-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .exp-title {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .exp-org {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .exp-date {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 2px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .exp-desc {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .exp-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--gray-50);
+      color: var(--gray-600);
+      border: 1px solid var(--gray-100);
+    }
+
+    .tag.green {
+      background: var(--green-50);
+      color: var(--green-600);
+      border-color: var(--green-100);
+    }
+
+    .tag.amber {
+      background: var(--amber-50);
+      color: var(--amber-400);
+      border-color: var(--amber-100);
+    }
+
+    .tag.teal {
+      background: var(--teal-50);
+      color: var(--teal-600);
+      border-color: var(--teal-100);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .skill-group h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-pill {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      border: 1px solid var(--gray-100);
+    }
+
+    /* RESEARCH */
+    .research-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .research-badge {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .research-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .research-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .research-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .research-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .research-stats {
+      display: flex;
+      gap: 12px;
+    }
+
+    .research-stat {
+      font-size: 12px;
+      color: var(--teal-600);
+      font-weight: 500;
+    }
+
+    .open-access-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--green-50);
+      color: var(--green-600);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--green-100);
+      margin-bottom: 6px;
+    }
+
+    /* PHOTOS / PORTFOLIO IMAGES */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .photo-slot {
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      background: var(--gray-50);
+      border: 2px dashed var(--gray-100);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--gray-400);
+      font-size: 12px;
+      text-align: center;
+      padding: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-slot:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      color: var(--teal-600);
+    }
+
+    .photo-slot input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .photo-slot img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .photo-slot-icon {
+      font-size: 22px;
+    }
+
+    .photo-slot-label {
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* AFRISORCE FEATURE */
+    .feature-card {
+      background: var(--accent);
+      border-radius: 16px;
+      padding: 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::after {
+      content: 'AFRISORCE';
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 6rem;
+      color: rgba(255, 255, 255, 0.07);
+      line-height: 1;
+      pointer-events: none;
+      letter-spacing: -2px;
+    }
+
+    .feature-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      opacity: 0.85;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    .feature-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .feature-pill {
+      background: rgba(255, 255, 255, 0.18);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* CONTACT */
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent);
+    }
+
+    .contact-icon {
+      font-size: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ── TABLET (≤ 768px) ── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding: 3rem 1.25rem 2.5rem;
+        gap: 2rem;
+      }
+
+      section {
+        padding: 2.5rem 1.25rem;
+      }
+
+      footer {
+        padding: 1.5rem 1.25rem;
+      }
+    }
+
+    /* ── MOBILE (≤ 520px) ── */
+    @media (max-width: 520px) {
+      nav {
+        padding: 0 1rem;
+      }
+
+      /* Hero: stack vertically, avatar on top centred */
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 2rem 1rem 2rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .hero>div:first-child {
+        order: 2;
+      }
+
+      .hero-avatar {
+        order: 1;
+        display: flex;
+        width: 110px;
+        height: 110px;
+        margin: 0 auto;
+      }
+
+      .hero-tag {
+        justify-content: center;
+      }
+
+      .hero-desc {
+        max-width: 100%;
+        font-size: 14px;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+      }
+
+      /* Stats: keep 3-col but shrink text */
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .stat-num {
+        font-size: 1.5rem;
+      }
+
+      .stat-label {
+        font-size: 11px;
+      }
+
+      .stat-card {
+        padding: 1rem 0.5rem;
+      }
+
+      /* About & Skills: single column */
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      /* Experience: tighten spacing */
+      .exp-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .exp-date {
+        margin-left: 0;
+      }
+
+      .exp-item {
+        gap: 1rem;
+      }
+
+      /* Research cards: stack badge above text */
+      .research-card {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .research-stats {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      /* Gallery: 2-column on mobile */
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      /* Contact: full-width items */
+      .contact-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .contact-item {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+
+      /* Feature card */
+      .feature-card {
+        padding: 1.5rem 1.25rem;
+      }
+
+      .feature-card::after {
+        font-size: 4rem;
+      }
+
+      /* Section spacing */
+      section {
+        padding: 2rem 1rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 1.25rem;
+      }
+
+      footer {
+        font-size: 11px;
+        padding: 1.25rem 1rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">Nashir Ngoobi</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="nav-mobile-overlay" id="mobileNav">
+    <a href="#about" onclick="closeNav()">About</a>
+    <a href="#experience" onclick="closeNav()">Experience</a>
+    <a href="#research" onclick="closeNav()">Research</a>
+    <a href="#gallery" onclick="closeNav()">Gallery</a>
+    <a href="#contact" onclick="closeNav()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-tag">Internship Candidate</div>
+      <h1>Education <em>meets</em> data-driven impact.</h1>
+      <p class="hero-desc">
+        BBA student, published researcher, co-founder of Afrisorce, and mentor to refugee youth across two CERTE
+        cohorts. Passionate about building learning programmes that create lasting change.
+      </p>
+      <a class="hero-cta" href="#experience">View my experience ↓</a>
+    </div>
+    <div class="hero-avatar" id="avatarSlot">
+      <img id="avatarImg" src="public/images/profile.jpg" alt="Nashir Ngoobi">
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- STATS -->
+  <section id="about" style="padding-bottom: 1rem;">
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-num">3.75</div>
+        <div class="stat-label">CGPA — Dean's List every semester</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Peer-reviewed publications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">CERTE cohorts mentored</div>
+      </div>
+    </div>
+
+    <div class="section-label">About</div>
+    <div class="section-title">Who I am</div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Education</h3>
+        <p>Bachelor of Business Administration (Hons), specializing in Business Analytics & Strategic Management at
+          Albukhary International University, Malaysia.</p>
+      </div>
+      <div class="about-card">
+        <h3>Mission</h3>
+        <p>To build scalable education and digital empowerment programmes across Africa, grounded in evidence, community
+          insight, and human-centred design.</p>
+      </div>
+      <div class="about-card">
+        <h3>What drives me</h3>
+        <p>Having witnessed firsthand the barriers young people in Uganda face in accessing quality education and
+          digital skills, I am committed to closing those gaps through programmatic action.</p>
+      </div>
+      <div class="about-card">
+        <h3>Why Edvolution</h3>
+        <p>Edvolution's model of systemic school transformation through teacher and leader capacity building mirrors the
+          approach I believe in — impact from the inside out.</p>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <div class="section-title">What I've done</div>
+
+    <div class="exp-item">
+      <div class="exp-dot-col">
+        <div class="exp-dot">🌍</div>
+        <div class="exp-line"></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-meta">
+          <span class="exp-title">Co-Founder — Afrisorce</span>
+          <span class="exp-org">3 Zero Club, AIU</span>
+          <span class="exp-date">Jan 2026 – Present</span>
+        </div>
+        <p class="exp-desc">Co-founded a youth-focused social innovation initiative delivering digital skills training,
+          entrepreneurship development, and startup support across Africa. Lead strategy, partnerships, and programme
+          delivery to equip young Africans with tools to participate in the digital economy.</p>
+        <div class="exp-tags">
+          <span class="tag teal">Programme Design</span>
+          <span class="tag teal">Capacity Building</span>
+          <span class="tag green">Youth Development</span>
+          <span class="tag green">Digital Skills</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot-col">
+        <div class="exp-dot">🏫</div>
+        <div class="exp-line"></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-meta">
+          <span class="exp-title">CERTE Mentor — Cohorts 12 & 13</span>
+          <span class="exp-org">Fugee Malaysia</span>
+          <span class="exp-date">Oct 2025 – Present</span>
+        </div>
+        <p class="exp-desc">Recalled for Cohort 13 based on outstanding performance in Cohort 12. Delivered structured
+          academic mentoring to refugee students, monitored learner progress, and collaborated with teachers to identify
+          students needing additional support.</p>
+        <div class="exp-tags">
+          <span class="tag teal">Programme Delivery</span>
+          <span class="tag teal">M&E</span>
+          <span class="tag green">Mentoring</span>
+          <span class="tag amber">Stakeholder Coordination</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot-col">
+        <div class="exp-dot">👥</div>
+        <div class="exp-line"></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-meta">
+          <span class="exp-title">President — Ugandan Students' Community</span>
+          <span class="exp-org">Albukhary International University</span>
+          <span class="exp-date">Jan 2025 – Present</span>
+        </div>
+        <p class="exp-desc">Lead initiatives for 20+ students, organize cultural and networking events, establish peer
+          support systems, and represent the student body in university forums.</p>
+        <div class="exp-tags">
+          <span class="tag teal">Leadership</span>
+          <span class="tag green">Event Management</span>
+          <span class="tag amber">Student Welfare</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot-col">
+        <div class="exp-dot">📊</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-meta">
+          <span class="exp-title">Data Entry Volunteer — Scholarship Unit</span>
+          <span class="exp-org">Albukhary International University</span>
+          <span class="exp-date">2025</span>
+        </div>
+        <p class="exp-desc">Digitized Ugandan applicants' data, ensuring accurate and timely processing for scholarship
+          selection.</p>
+        <div class="exp-tags">
+          <span class="tag">Data Management</span>
+          <span class="tag">Administrative</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- AFRISORCE FEATURE -->
+  <section>
+    <div class="feature-card">
+      <div
+        style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-bottom: 0.5rem;">
+        Featured Initiative</div>
+      <h3>Afrisorce — Digital Skills for African Youth</h3>
+      <p>A youth-led social innovation initiative I co-founded under the 3 Zero Club framework. Afrisorce equips young
+        Africans — particularly in Uganda — with digital skills, mentorship, and career guidance to enhance
+        employability and participation in the digital economy.</p>
+      <div class="feature-pills">
+        <span class="feature-pill">Digital Literacy</span>
+        <span class="feature-pill">Entrepreneurship</span>
+        <span class="feature-pill">Youth Empowerment</span>
+        <span class="feature-pill">Startup Support</span>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-label">Research & Publications</div>
+    <div class="section-title">Academic contributions</div>
+
+    <div class="research-card">
+      <div class="research-badge">📄</div>
+      <div>
+        <div class="open-access-badge">✓ Open Access — Springer Nature</div>
+        <div class="research-title"><a class="research-link" href="https://doi.org/10.1007/s44217-025-01023-2"
+            target="_blank" rel="noopener">The State of Girl Child Education in Uganda and the Path Forward ↗</a></div>
+        <div class="research-meta">Ngoobi, N., Chokufa, S.L., & Khan, F. — Discover Education, Vol. 5, Art. 76 (2026) ·
+          DOI: 10.1007/s44217-025-01023-2</div>
+        <div class="research-stats">
+          <span class="research-stat">1,950+ accesses</span>
+          <span class="research-stat">1 citation</span>
+          <span class="research-stat">8 Altmetric</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="research-card">
+      <div class="research-badge">📄</div>
+      <div>
+        <div class="research-title"><a class="research-link"
+            href="https://www.researchgate.net/profile/Rivaldo-Hungwe/publication/389739653_Investigating_the_main_drivers_of_inflation_and_policy_measures_for_controlling_inflation_in_Sudan/links/67d0ac207c5b5569dcb99933/Investigating-the-main-drivers-of-inflation-and-policy-measures-for-controlling-inflation-in-Sudan.pdf"
+            target="_blank" rel="noopener">Investigating the Main Drivers of Inflation and Policy Measures for
+            Controlling Inflation in Sudan ↗</a></div>
+        <div class="research-meta">Nashir, N., Hungwe, R., & Guemou, P. — Global Journal of Human Social Sciences
+          Research, 4(1), 19–39 (2024)</div>
+      </div>
+    </div>
+
+    <div style="background: var(--gray-50); border-radius: 12px; padding: 1.25rem; border: 1px solid var(--gray-100);">
+      <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--gray-800);">Ongoing Research</div>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 6px;">
+        <li style="font-size: 13px; color: var(--muted); display: flex; gap: 8px;"><span
+            style="color: var(--accent);">→</span> Gamified Learning in Higher Education: Effects on Student Motivation
+          and Performance</li>
+        <li style="font-size: 13px; color: var(--muted); display: flex; gap: 8px;"><span
+            style="color: var(--accent);">→</span> Air Pollution and Gendered Outcomes in Africa: CO₂, Female Life
+          Expectancy and Education</li>
+      </ul>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-label">Skills</div>
+    <div class="section-title">What I bring</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Programme & Delivery</h3>
+        <div class="skill-pill-row">
+          <span class="skill-pill">Curriculum Design</span>
+          <span class="skill-pill">Facilitation</span>
+          <span class="skill-pill">M&E</span>
+          <span class="skill-pill">Stakeholder Engagement</span>
+          <span class="skill-pill">Reporting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Data & Analytics</h3>
+        <div class="skill-pill-row">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">Excel</span>
+          <span class="skill-pill">EDA</span>
+          <span class="skill-pill">Data Visualization</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Research</h3>
+        <div class="skill-pill-row">
+          <span class="skill-pill">Academic Writing</span>
+          <span class="skill-pill">Thematic Analysis</span>
+          <span class="skill-pill">Secondary Data Synthesis</span>
+          <span class="skill-pill">Policy Briefs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="skill-pill-row">
+          <span class="skill-pill">English (Fluent)</span>
+          <span class="skill-pill">Swahili (Fluent)</span>
+          <span class="skill-pill">Luganda (Fluent)</span>
+          <span class="skill-pill">Malay (Beginner)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-label">Gallery</div>
+    <div class="section-title">Moments in action</div>
+    <div class="photo-grid">
+      <div class="photo-slot" id="slot0">
+        <img src="public/images/CERTE mentoring.jpg" alt="CERTE Mentoring">
+        <span class="photo-slot-label"
+          style="position:relative;z-index:1;background:rgba(0,0,0,0.45);color:#fff;padding:3px 10px;border-radius:20px;bottom:0;">CERTE
+          Mentoring</span>
+      </div>
+      <div class="photo-slot" id="slot1">
+        <img src="public/images/Afrisorce.CR3" alt="Afrisorce Programme">
+        <span class="photo-slot-label"
+          style="position:relative;z-index:1;background:rgba(0,0,0,0.45);color:#fff;padding:3px 10px;border-radius:20px;">Afrisorce
+          Programme</span>
+      </div>
+      <div class="photo-slot" id="slot2">
+        <img src="public/images/Leadership Event.JPG" alt="Leadership Event">
+        <span class="photo-slot-label"
+          style="position:relative;z-index:1;background:rgba(0,0,0,0.45);color:#fff;padding:3px 10px;border-radius:20px;">Leadership
+          Event</span>
+      </div>
+      <div class="photo-slot" id="slot3">
+        <img src="public/images/Community.jpeg" alt="Community Work">
+        <span class="photo-slot-label"
+          style="position:relative;z-index:1;background:rgba(0,0,0,0.45);color:#fff;padding:3px 10px;border-radius:20px;">Community
+          Work</span>
+      </div>
+      <div class="photo-slot" id="slot4">
+        <img src="public/images/Academic.jpeg" alt="Research / Academic">
+        <span class="photo-slot-label"
+          style="position:relative;z-index:1;background:rgba(0,0,0,0.45);color:#fff;padding:3px 10px;border-radius:20px;">Research
+          / Academic</span>
+      </div>
+      <div class="photo-slot" id="slot5">
+        <img src="public/images/Other.jpg" alt="Other">
+        <span class="photo-slot-label"
+          style="position:relative;z-index:1;background:rgba(0,0,0,0.45);color:#fff;padding:3px 10px;border-radius:20px;">Other</span>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <div class="section-title">Get in touch</div>
+    <div class="contact-row">
+      <a class="contact-item" href="mailto:nashirngb@gmail.com">
+        <span class="contact-icon">✉️</span> nashirngb@gmail.com
+      </a>
+      <a class="contact-item" href="tel:+60176547946">
+        <span class="contact-icon">📞</span> +6(0)-176-547-946
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/nashir-ngoobi-7a0047213" target="_blank">
+        <span class="contact-icon">🔗</span> LinkedIn
+      </a>
+      <a class="contact-item" href="https://orcid.org/0009-0007-5451-599X" target="_blank">
+        <span class="contact-icon">🎓</span> ORCID
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Nashir Ngoobi · Albukhary International University, Malaysia · Portfolio for Internship</p>
+  </footer>
+
+  <script>
+    // Images are loaded from public/images/ — replace those files to update the portfolio.
+
+    // ── Mobile nav toggle ──
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function openNav() {
+      hamburgerBtn.classList.add('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      mobileNav.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNav() {
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+      mobileNav.classList.contains('open') ? closeNav() : openNav();
+    });
+
+    // Close on outside tap
+    document.addEventListener('click', (e) => {
+      if (mobileNav.classList.contains('open') &&
+        !mobileNav.contains(e.target) &&
+        !hamburgerBtn.contains(e.target)) {
+        closeNav();
+      }
+    });
+  </script>
+</body>
+
+</html>
