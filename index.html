@@ -247,6 +247,12 @@
       margin-bottom: 1.75rem;
     }
 
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     .hero-cta {
       display: inline-flex;
       align-items: center;
@@ -263,6 +269,26 @@
 
     .hero-cta:hover {
       opacity: 0.88;
+    }
+
+    .hero-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .hero-btn-secondary:hover {
+      background: var(--gray-50);
+      border-color: var(--muted);
     }
 
     .hero-avatar {
@@ -816,8 +842,15 @@
         font-size: 14px;
       }
 
-      .hero-cta {
+      .hero-buttons {
         justify-content: center;
+      }
+
+      .hero-cta,
+      .hero-btn-secondary {
+        justify-content: center;
+        flex: 1;
+        min-width: 160px;
       }
 
       .hero h1 {
@@ -959,7 +992,10 @@
       <p class="hero-desc">
         BBA student, social media manager, content strategist, and co-founder of Afrisorce — a youth brand with a growing digital presence across LinkedIn and Instagram. Passionate about storytelling that builds communities and drives engagement.
       </p>
-      <a class="hero-cta" href="#experience">View my experience ↓</a>
+      <div class="hero-buttons">
+        <a class="hero-cta" href="#experience">View my experience ↓</a>
+        <a class="hero-btn-secondary" href="Nashir_Ngoobi_SocialMedia_Intern.pdf" download="Nashir_Ngoobi_SocialMedia_Intern.pdf">Download Resume 📄</a>
+      </div>
     </div>
     <div class="hero-avatar" id="avatarSlot">
       <img id="avatarImg" src="images/profile.jpg" alt="Nashir Ngoobi">
